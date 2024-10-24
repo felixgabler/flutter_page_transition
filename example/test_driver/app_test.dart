@@ -11,22 +11,20 @@ Future<File> takeScreenshot(FlutterDriver driver, String path) async {
 Future<File> recordRenderTree(FlutterDriver driver, String path) async {
   RenderTree renderTree = await driver.getRenderTree();
   File file = new File(path);
-  return await file.writeAsString(renderTree.tree);
+  return await file.writeAsString(renderTree.tree!);
 }
 
 void main() {
   group('Default test', () {
 
-    FlutterDriver driver;
+    late FlutterDriver driver;
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
     });
 
     tearDownAll(() async {
-      if (driver != null) {
         driver.close();
-      }
     });
 
     test('check flutter driver health', () async {
@@ -52,7 +50,7 @@ void main() {
 
       final summary = new TimelineSummary.summarize(timeline);
 
-      summary.writeSummaryToFile('route_summary', pretty: true, destinationDirectory: './timeline/');
+      summary.writeTimelineToFile('route_summary', pretty: true, destinationDirectory: './timeline/');
       summary.writeTimelineToFile('route_timeline', pretty: true, destinationDirectory: './timeline/');
 
       print('Success!');

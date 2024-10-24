@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class OtherPage extends StatefulWidget {
   static const String tag = 'other-page';
-  OtherPage({Key key}) : super(key: key);
+
+  OtherPage({super.key});
 
   @override
   _OtherPageState createState() => _OtherPageState();
 }
 
 class _OtherPageState extends State<OtherPage> {
-
   String _text = 'Other';
 
   void _push() {
